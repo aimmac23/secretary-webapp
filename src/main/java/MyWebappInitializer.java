@@ -15,8 +15,10 @@ public class MyWebappInitializer implements WebApplicationInitializer {
 		new ResteasyBootstrap().contextInitialized(new ServletContextEvent(servletContext));
 				
 		AnnotationConfigWebApplicationContext config = new AnnotationConfigWebApplicationContext();
+		config.register(SpringConfig.class);
 		new SpringContextLoaderSupport().customizeContext(servletContext, config);
 		
+		config.refresh();
 	}
 
 }
