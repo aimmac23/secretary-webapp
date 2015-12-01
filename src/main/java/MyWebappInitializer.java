@@ -9,6 +9,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 public class MyWebappInitializer implements WebApplicationInitializer {
 
+	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		
 		// XXX: I didn't want to have to do this...
