@@ -8,7 +8,7 @@
 
     <context-param>
         <param-name>resteasy.guice.modules</param-name>
-        <param-value>MyGuiceModule</param-value>
+        <param-value>com.aimmac23.secretary.MyGuiceModule</param-value>
     </context-param>
     
     <listener>

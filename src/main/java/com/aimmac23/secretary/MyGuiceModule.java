@@ -1,3 +1,5 @@
+package com.aimmac23.secretary;
+
 import java.io.IOException;
 import java.util.Properties;
 
