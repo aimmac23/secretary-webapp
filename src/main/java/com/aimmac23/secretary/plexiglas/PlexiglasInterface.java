@@ -1,5 +1,7 @@
 package com.aimmac23.secretary.plexiglas;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -16,14 +18,17 @@ public class PlexiglasInterface {
 	
 	private Client client;
 
-	public PlexiglasInterface() {
+	private String baseUrl;
+
+	@Inject
+	public PlexiglasInterface(@Named("plexiglas.baseUrl") String baseUrl) {
+		this.baseUrl = baseUrl;
 		client = ClientBuilder.newClient();
-		
 	}
 	
-	public void turnOn() {
-		WebTarget target = client.target("http://192.168.0.5:5000")
-				.path("/plexiglas/device/green").path("on");
+	public void turnOn(String deviceId) {
+		WebTarget target = client.target(baseUrl)
+				.path("/plexiglas/device").path(deviceId).path("on");
 		
 		try {
 			Response response = target.request().buildGet().invoke();
@@ -38,9 +43,9 @@ public class PlexiglasInterface {
 		}
 	}
 	
-	public void turnOff() {
-		WebTarget target = client.target("http://192.168.0.5:5000")
-				.path("/plexiglas/device/green").path("off");
+	public void turnOff(String deviceId) {
+		WebTarget target = client.target(baseUrl)
+				.path("/plexiglas/device").path(deviceId).path("off");
 		
 		try {
 			Response response = target.request().buildGet().invoke();
